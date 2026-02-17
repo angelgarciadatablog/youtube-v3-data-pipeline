@@ -1,0 +1,7 @@
+.env
+__pycache__/
+.gcloudignore
+data/
+venv/
+test_pipeline.py
+.DS_Store
