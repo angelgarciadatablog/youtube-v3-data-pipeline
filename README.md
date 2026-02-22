@@ -187,9 +187,9 @@ gcloud scheduler jobs create http daily-pipeline \
   --uri="https://REGION-PROJECT.cloudfunctions.net/daily" \
   --http-method=GET
 
-# Ejecución semanal los lunes a las 1:30 AM UTC
+# Ejecución semanal los lunes a las 2:30 AM UTC
 gcloud scheduler jobs create http weekly-pipeline \
-  --schedule="30 1 * * 1" \
+  --schedule="30 2 * * 1" \
   --uri="https://REGION-PROJECT.cloudfunctions.net/weekly" \
   --http-method=GET
 ```
@@ -206,6 +206,40 @@ gcloud scheduler jobs create http weekly-pipeline \
 
 ---
 
+## Roadmap — Capa de servicio de datos
+
+Este repositorio cubre únicamente la fase de **extracción, transformación y carga (ETL)** de datos hacia BigQuery. La siguiente fase del proyecto consiste en exponer esos datos para su consumo externo.
+
+### Arquitectura planeada
+
+```
+BigQuery (tablas raw)
+        │
+        ▼
+  Consultas SQL        ← transformaciones y agregaciones analíticas
+        │
+        ▼
+ Cloud Storage         ← archivos JSON estáticos por endpoint
+        │
+        ▼
+  Consumidores:
+  ├── Web personal      (lectura directa de JSON desde el bucket)
+  ├── Looker Studio     (conector nativo de BigQuery)
+  └── Power BI          (conector nativo de BigQuery o via JSON)
+```
+
+### Qué falta construir
+
+- [ ] Consultas SQL analíticas sobre las tablas de BigQuery (vistas o queries programadas)
+- [ ] Cloud Functions que ejecuten esas consultas y exporten los resultados como archivos JSON a Cloud Storage
+- [ ] Bucket de Cloud Storage con acceso público para servir los archivos
+- [ ] Integración de los JSON en la web personal
+
+### Dataset público de BigQuery
+
+Las tablas de BigQuery serán de acceso público. Cualquier persona podrá conectarse y practicar SQL con datos reales de un canal de YouTube, sin necesidad de configurar credenciales propias.
+
+
 ## Autor
 
-**Angel Garcia** — [LinkedIn](https://www.linkedin.com/in/tu-perfil) · [angelgarciadatablog.com](https://angelgarciadatablog.com)
+**Angel Garcia** — [LinkedIn](https://www.linkedin.com/in/angelgarciachanga) · [angelgarciadatablog.com](https://angelgarciadatablog.com)
