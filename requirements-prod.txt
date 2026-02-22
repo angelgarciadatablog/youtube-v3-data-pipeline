@@ -1,10 +1,7 @@
-# Google Cloud
 google-cloud-bigquery==3.40.0
 google-api-python-client==2.190.0
 google-auth==2.48.0
 pyarrow>=10.0.0
-
-# Data processing
 pandas==2.3.3
 isodate==0.7.2
-
+python-dotenv==1.2.1
