@@ -3,3 +3,4 @@ google-cloud-bigquery==3.40.0
 pandas==2.3.3
 isodate==0.7.2
 python-dotenv==1.2.1
+functions-framework==3.5.0
