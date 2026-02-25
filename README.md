@@ -55,7 +55,7 @@ El punto de entrada `main.py` expone dos funciones HTTP para Google Cloud Functi
 | `videos_snapshot` | Métricas semanales de **todos** los videos del canal (vistas, likes, comentarios) | Append (idempotente) |
 
 > Las tablas de tipo **Snapshot** usan un patrón delete-before-insert para garantizar idempotencia: si el pipeline se ejecuta más de una vez en la misma semana, no genera duplicados.
-
+> Dataset construido a partir de YouTube Data API v3 usando información pública del canal. No incluye datos personales ni información de terceros.
 ---
 
 ## Stack tecnológico
